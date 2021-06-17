@@ -1,6 +1,5 @@
 import { FormLabel, FormControl, Input as ChakraInput, InputProps as CharaInputProps } from '@chakra-ui/react';
 
-
 interface InputProps extends CharaInputProps{
   name: string;
   label?: string;
