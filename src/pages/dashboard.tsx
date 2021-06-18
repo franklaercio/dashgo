@@ -37,10 +37,10 @@ const options = {
       color: theme.colors.gray[600]
     },
     categories: [
-      '2021-03-18T00:00:00.000Z',
-      '2021-03-17T00:00:00.000Z',
+      '2021-03-15T00:00:00.000Z',
       '2021-03-16T00:00:00.000Z',
-      '2021-03-15T00:00:00.000Z'
+      '2021-03-17T00:00:00.000Z',
+      '2021-03-18T00:00:00.000Z'
     ]
   },
   fill: {
@@ -56,7 +56,7 @@ const options = {
 
 const series = [{
   name: 'series1', 
-  data: [31, 120, 18, 19]
+  data: [31, 40, 18, 19]
 }];
 
 export default function Dashboard() {
@@ -83,6 +83,7 @@ export default function Dashboard() {
             borderRadius={8}
           >
             <Text fontSize="lg" mb="4">Taxa de Abertura</Text>
+            <Chart options={options} series={series} type="area" height={160}/>
           </Box>
         </SimpleGrid>
       </Flex>
