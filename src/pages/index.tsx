@@ -18,6 +18,7 @@ export default function Home() {
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(signInFormSchema)
   });
+  
   const { errors } = formState;
 
   const handleSignIn: SubmitHandler<SignInFormData> = async (values) => {
