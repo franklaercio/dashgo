@@ -16,10 +16,6 @@ export default function UserList() {
     lg: true
   });
 
-  useEffect(() => {
-    
-  }, [])
-
   return (
     <Box>
       <Header />
