@@ -5,7 +5,6 @@ import Header from '../../components/Header';
 import { RiAddLine } from 'react-icons/ri';
 import Pagination from '../../components/Pagination';
 import Link from 'next/link';
-import { useEffect } from 'react';
 import { useUsers } from '../../services/hooks/useUsers';
 
 export default function UserList() {
@@ -48,43 +47,47 @@ export default function UserList() {
             </Flex>
           ): (
             <>
-              <Table colorScheme="whiteAlpha">
-              <Thead>
-                <Tr>
-                  <Th px={["4", "4", "6"]} color="gray.300" width="8">
-                    <Checkbox colorScheme="pink" />
-                  </Th>
-                  <Th>Usuários</Th>
+                <Table colorScheme="whiteAlpha">
+                <Thead>
+                  <Tr>
+                    <Th px={["4", "4", "6"]} color="gray.300" width="8">
+                      <Checkbox colorScheme="pink" />
+                    </Th>
+                    <Th>Usuários</Th>
 
-                  {isWideVersion && (
-                    <Th>Data de Cadastro</Th>
-                  )}
-                </Tr>
-              </Thead>
-              <Tbody>
-                {data.map(user => {
-                  return (
-                    <Tr>
-                      <Td px={["4", "4", "6"]}>
-                        <Checkbox colorScheme="pink" />
-                      </Td>
-                      <Td>
-                        <Box>
-                          <Text fontWeight="bold">{user.name}</Text>
-                          <Text fontSize="sm" color="gray.300">{user.email}</Text>
-                        </Box>
-                      </Td>
+                    {isWideVersion && (
+                      <Th>Data de Cadastro</Th>
+                    )}
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {data.map(user => {
+                    return (
+                      <Tr>
+                        <Td px={["4", "4", "6"]}>
+                          <Checkbox colorScheme="pink" />
+                        </Td>
+                        <Td>
+                          <Box>
+                            <Text fontWeight="bold">{user.name}</Text>
+                            <Text fontSize="sm" color="gray.300">{user.email}</Text>
+                          </Box>
+                        </Td>
 
-                      {isWideVersion && (
-                        <Td>{user.created_at}</Td>
-                      )}
-                    </Tr>
-                  );
-                })}
-              </Tbody>
-            </Table>
+                        {isWideVersion && (
+                          <Td>{user.created_at}</Td>
+                        )}
+                      </Tr>
+                    );
+                  })}
+                </Tbody>
+              </Table>
 
-            <Pagination />
+              <Pagination 
+                totalCountOfRegisters={200} 
+                currentPage={5} 
+                onPageChange={() => {}}
+              />
             </>
           ))}
         </Box>
