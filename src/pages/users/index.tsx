@@ -14,15 +14,18 @@ import {
   Checkbox,
   useBreakpointValue,
   Spinner,
+  Link,
 } from "@chakra-ui/react";
 
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import { RiAddLine } from "react-icons/ri";
 import Pagination from "../../components/Pagination";
-import Link from "next/link";
+import NextLink from "next/link";
 import { useUsers } from "../../services/hooks/useUsers";
 import { useState } from "react";
+import { queryClient } from "../../services/queryClient";
+import { api } from "../../services/api";
 
 export default function UserList() {
   const [page, setPage] = useState(1);
@@ -32,6 +35,16 @@ export default function UserList() {
     base: false,
     lg: true,
   });
+
+  async function handlerPrefetchUser(userId: number) {
+    await queryClient.prefetchQuery(["users", userId], async () => {
+      const response = await api.get(`users/${userId}`);
+      return response.data;
+    }),
+      {
+        staleTime: 1000 * 60 * 10, // 10 minutes
+      };
+  }
 
   return (
     <Box>
@@ -49,7 +62,7 @@ export default function UserList() {
               )}
             </Heading>
 
-            <Link href="/users/create" passHref>
+            <NextLink href="/users/create" passHref>
               <Button
                 as="a"
                 size="sm"
@@ -59,7 +72,7 @@ export default function UserList() {
               >
                 Criar novo
               </Button>
-            </Link>
+            </NextLink>
           </Flex>
 
           {isLoading ? (
@@ -92,7 +105,12 @@ export default function UserList() {
                         </Td>
                         <Td>
                           <Box>
-                            <Text fontWeight="bold">{user.name}</Text>
+                            <Link
+                              color="purple.400"
+                              onMouseEnter={() => handlerPrefetchUser(user.id)}
+                            >
+                              <Text fontWeight="bold">{user.name}</Text>
+                            </Link>
                             <Text fontSize="sm" color="gray.300">
                               {user.email}
                             </Text>
