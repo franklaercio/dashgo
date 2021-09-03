@@ -10,6 +10,8 @@ import { useUsers } from '../../services/hooks/useUsers';
 export default function UserList() {
   const { data, isLoading, isFetching , error } = useUsers();
 
+  console.log("DATA:" + data);
+
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true
@@ -84,8 +86,8 @@ export default function UserList() {
               </Table>
 
               <Pagination 
-                totalCountOfRegisters={200} 
-                currentPage={5} 
+                totalCountOfRegisters={10} 
+                currentPage={1} 
                 onPageChange={() => {}}
               />
             </>
