@@ -100,7 +100,7 @@ export default function UserList({ users }) {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {data.users.map((user) => {
+                  {data.map((user) => {
                     return (
                       <Tr>
                         <Td px={["4", "4", "6"]}>
@@ -128,7 +128,7 @@ export default function UserList({ users }) {
               </Table>
 
               <Pagination
-                totalCountOfRegisters={data.totalCount}
+                totalCountOfRegisters={data}
                 currentPage={page}
                 onPageChange={setPage}
               />
